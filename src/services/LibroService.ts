@@ -1,14 +1,20 @@
 import { Libro } from "../models/Libro";
+import { LibroRepository } from "../repositories/LibroRepository";
 
 export class LibroService {
-  private libros: Libro[] = [];
+  private repository: LibroRepository;
+
+  constructor() {
+    this.repository = LibroRepository.getInstance();
+  }
 
   public agregarLibro(
     titulo: string,
     autor: string,
     anio: number
   ): void {
-    const id = this.libros.length + 1;
+    const libros = this.repository.obtenerLibros();
+    const id = libros.length + 1;
 
     const nuevoLibro = new Libro(
       id,
@@ -17,16 +23,14 @@ export class LibroService {
       anio
     );
 
-    this.libros.push(nuevoLibro);
+    this.repository.agregarLibro(nuevoLibro);
   }
 
   public eliminarLibro(id: number): void {
-    this.libros = this.libros.filter(
-      libro => libro.getId() !== id
-    );
+    this.repository.eliminarLibro(id);
   }
 
   public obtenerLibros(): Libro[] {
-    return this.libros;
+    return this.repository.obtenerLibros();
   }
 }
