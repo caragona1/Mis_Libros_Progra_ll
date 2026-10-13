@@ -1,3 +1,8 @@
+Readme actualizado 
+Se creó la aplicación Mis Libros con registro e inicio de sesión mediante Supabase. También se agregó la función para guardar, mostrar y eliminar libros, además de cerrar sesión.
+
+//
+
 Se realizaron los siguientes cambios en la aplicación:
 
  -Se creó LibroRepository para manejar los libros.
